@@ -39,15 +39,15 @@ for idx, line in enumerate(pageClients.iter_rows(min_row=2), start=2):
         # Gerar link do WhatsApp com a mensagem
         linkMessageWhatsapp = f'https://web.whatsapp.com/send?phone={phone}&text={quote(message)}'
         webbrowser.open(linkMessageWhatsapp)
-        sleep(10)  # Tempo para carregar a janela do WhatsApp com o número
+        sleep(8)  # Tempo para carregar a janela do WhatsApp com o número
         
         # Tentar localizar a seta de envio da mensagem
         arrow = pyautogui.locateCenterOnScreen('arrow.png')
         
         if arrow:
-            sleep(5)
+            sleep(3)
             pyautogui.click(arrow[0], arrow[1])  # Clicar na seta para enviar
-            sleep(5)
+            sleep(3)
             pyautogui.hotkey('ctrl', 'w')  # Fechar a aba após o envio
             pageClients.cell(row=idx, column=4, value='Sucesso ao enviar mensagem')
         else:
