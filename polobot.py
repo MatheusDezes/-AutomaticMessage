@@ -111,6 +111,8 @@ def start_thread(text_widget):
 app = ctk.CTk()
 app.title("PoloBot WhatsApp")
 app.geometry("600x400")
+app.iconbitmap("appicon.ico")
+app.resizable(False, False)
 
 # Área de log de saída
 text_widget = tk.Text(app, height=15, width=70)
@@ -126,4 +128,3 @@ stop_button.pack(pady=10)
 
 # Rodando a aplicação
 app.mainloop()
-
