@@ -57,26 +57,19 @@ def start_automation(text_widget):
                 # Gerar link do WhatsApp com a mensagem
                 linkMessageWhatsapp = f'https://web.whatsapp.com/send?phone={phone}&text={quote(message)}'
                 webbrowser.open(linkMessageWhatsapp)
-                sleep(10)  # Tempo para carregar a janela do WhatsApp com o número
+                sleep(7)  # Tempo para carregar a janela do WhatsApp com o número
 
                 # Verificar se a automação foi interrompida
                 if not automation_running:
                     log_message(text_widget, "Automação interrompida pelo usuário.")
                     break
 
-                # Tentar localizar a seta de envio da mensagem
-                arrow = pyautogui.locateCenterOnScreen('arrow.png')
-
-                if arrow:
-                    sleep(5)
-                    pyautogui.click(arrow[0], arrow[1])  # Clicar na seta para enviar
-                    sleep(5)
-                    pyautogui.hotkey('ctrl', 'w')  # Fechar a aba após o envio
-                    pageClients.cell(row=idx, column=4, value='Sucesso ao enviar mensagem')
-                    log_message(text_widget, f"Mensagem enviada para {name}")
-                else:
-                    log_message(text_widget, f"Seta de envio não encontrada para {name}.")
-                    pageClients.cell(row=idx, column=4, value='Seta de envio não encontrada')
+                sleep(2)
+                pyautogui.hotkey('Enter')  # Fechar a aba após o envio
+                sleep(5)
+                pyautogui.hotkey('ctrl', 'w')  # Fechar a aba após o envio
+                pageClients.cell(row=idx, column=4, value='Sucesso ao enviar mensagem')
+                log_message(text_widget, f"Mensagem enviada para {name}")
 
             except Exception as e:
                 log_message(text_widget, f"Erro ao enviar mensagem para {name}")
@@ -109,9 +102,9 @@ def start_thread(text_widget):
 
 # Criando a interface gráfica com CustomTkinter
 app = ctk.CTk()
-app.title("PoloBot WhatsApp")
+app.title("PoloBot Automação")
 app.geometry("600x400")
-app.iconbitmap("appicon.ico")
+app.iconbitmap("./fig/iconBot.ico")
 app.resizable(False, False)
 
 # Área de log de saída
